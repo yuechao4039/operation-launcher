@@ -69,6 +69,15 @@
 
         <dependency>
             <groupId>com.dld.hll.financial</groupId>
+            <artifactId>auth-interface</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>auth-grpc-interface</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
             <artifactId>api-core</artifactId>
         </dependency>
 

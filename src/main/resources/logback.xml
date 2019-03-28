@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="true">
+
+
+    <!-- 配置主机名 日志目录 日志文件名 -->
+    <property name="HOSTNAME" value="financial.webapp-launcher.hualala.com"/>
+    <property name="LOG_DIR" value="/home/logs/financial-webapp-launcher"/>
+    <property name="LOG_FILE" value="${HOSTNAME}" />
+
+    <!-- 控制台输入 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 滚动文件, 每日一滚，保留30天历史，自动压缩前一天的日志 -->
+    <appender name="ROLLFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${LOG_FILE}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${LOG_FILE}.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="ma.glasnost.orika" level="info"/>
+    <logger name="org.springframework" level="info"/>
+    <logger name="org.springframework.web" level="error"/>
+    <logger name="org.mybatis.spring.mapper" level="info"/>
+    <logger name="com.dld.hll.financial.common.fileimport.util" level="info"/>
+    <logger name="org.apache.kafka.clients" level="info"/>
+    <logger name="org.apache.http" level="info"/>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLFILE" />
+    </root>
+</configuration>

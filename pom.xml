@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>com.dld.hll.financial</groupId>
+        <artifactId>financial-boot</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dld.hll.financial</groupId>
+    <artifactId>operation-launcher</artifactId>
+    <packaging>war</packaging>
+    <version>0.1.0-SNAPSHOT</version>
+    <url>http://maven.apache.org</url>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>apm-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>apm-interface</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>apm-grpc-interface</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>apm-service</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>apm-util</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>cloud_tenant-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>cloud_tenant-grpc-interface</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>cloud_tenant-interface</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>cloud_tenant-service</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>api-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>base-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hualala.passport</groupId>
+            <artifactId>client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dld.hll.financial</groupId>
+            <artifactId>config-center</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dld.hll.grpc</groupId>
+            <artifactId>grpc-client-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dld.hll.grpc</groupId>
+            <artifactId>grpc-server-spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>hualalaReleases</id>
+            <name>hualalaReleasesName</name>
+            <url>http://repo.hualala.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <id>hualalaSnapshots</id>
+            <name>hualalaSnapshotsName</name>
+            <url>http://repo.hualala.com/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>gozapReleases</id>
+            <name>gozapReleasesName</name>
+            <url>http://repo.hualala.com/nexus/content/repositories/Gozap/</url>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+            <id>gozapSnapshots</id>
+            <name>gozapSnapshotsName</name>
+            <url>http://repo.gozap.com/repos/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.10.v20160621</version>
+                <configuration>
+
+                    <httpConnector>
+                        <port>80</port>
+                    </httpConnector>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                    </webAppConfig>
+
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>

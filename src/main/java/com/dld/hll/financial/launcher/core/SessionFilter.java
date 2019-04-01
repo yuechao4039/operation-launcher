@@ -88,12 +88,6 @@ public class SessionFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse rep = (HttpServletResponse) response;
 
-        /** session中有值，直接跳过 */
-        if (!Objects.isNull(req.getSession().getAttribute(SessionVo.SESSION_VO))) {
-            chain.doFilter(request, response);
-            return;
-        }
-
         /** 不校验会话URL */
         String uri = req.getRequestURI();
         for (String pattern : excludeUrlPatterns) {
@@ -101,6 +95,12 @@ public class SessionFilter implements Filter {
                 chain.doFilter(request, response);
                 return;
             }
+        }
+
+        /** session中有值，直接跳过 */
+        if (!Objects.isNull(req.getSession().getAttribute(SessionVo.SESSION_VO))) {
+            chain.doFilter(request, response);
+            return;
         }
 
         WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(req
@@ -171,7 +171,14 @@ public class SessionFilter implements Filter {
         sessionVoRequest.setSource(SessionVoRequest.SESSION_VO_REQUEST_SOURCE_PASSPORT);
 
         SessionVoService sessionVoService = webApplicationContext.getBean(SessionVoService.class);
-        // sessionVoService.kickOther(sessionVoRequest);
+        try {
+            sessionVoService.kickOther(sessionVoRequest, queryTrdTenantMappingByPropertiesResp.getTenantID(), ((HttpServletRequest) request).getSession().getId());
+        } catch (HualalaException e) {
+            log.error(e.getMessage(), e);
+            forwardToLogin(req, rep, e.getResultMsg());
+            return;
+
+        }
         ((HttpServletRequest) request).getSession().setAttribute(SessionVo.SESSION_VO, sessionVoService.getSessionVo(sessionVoRequest));
 
 

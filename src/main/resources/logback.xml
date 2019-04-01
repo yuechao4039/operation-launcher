@@ -3,8 +3,7 @@
 
 
     <!-- 配置主机名 日志目录 日志文件名 -->
-    <property name="HOSTNAME" value="financial.webapp-launcher.hualala.com"/>
-    <property name="LOG_DIR" value="/home/logs/financial-webapp-launcher"/>
+    <property name="LOG_DIR" value="/home/logs/financial-operation-launcher"/>
     <property name="LOG_FILE" value="${HOSTNAME}" />
 
     <!-- 控制台输入 -->

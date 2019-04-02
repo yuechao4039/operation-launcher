@@ -172,7 +172,7 @@ public class SessionFilter implements Filter {
 
         SessionVoService sessionVoService = webApplicationContext.getBean(SessionVoService.class);
         try {
-            sessionVoService.kickOther(sessionVoRequest, queryTrdTenantMappingByPropertiesResp.getTenantID(), ((HttpServletRequest) request).getSession().getId());
+            sessionVoService.kickOther(req, sessionVoRequest, queryTrdTenantMappingByPropertiesResp.getTenantID(), ((HttpServletRequest) request).getSession().getId());
         } catch (HualalaException e) {
             log.error(e.getMessage(), e);
             forwardToLogin(req, rep, e.getResultMsg());
